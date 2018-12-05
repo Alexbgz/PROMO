@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<script src="{% static 'jquery-3.3.1.js' %}"></script>
+<script src="{% static 'jquery.cookie.js' %}"></script>
+<script type="text/javascript">
+    var promo = $.cookie('PROMO');
+    if (promo) {
+         document.location.href = 'http://form.mail.local:8000/' + promo;
+      }
+</script>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Form</title>
+    </head>
+    <body>
+    <div style="width:300px;height:300px;">
+    <h1>Анкета</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+    </div>
+    </body>
+</html>
